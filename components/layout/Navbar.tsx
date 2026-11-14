@@ -37,6 +37,12 @@ export function Navbar() {
           {/* Desktop links */}
           <div className="hidden items-center gap-8 md:flex">
             <Link
+              href="/modules/timeline/lab"
+              className="text-sm text-accent transition-colors hover:text-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+            >
+              Lab
+            </Link>
+            <Link
               href="/#modules"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
             >
@@ -83,6 +89,15 @@ export function Navbar() {
             className="border-t border-border py-4 md:hidden"
           >
             <ul className="flex flex-col gap-1">
+              <li>
+                <Link
+                  href="/modules/timeline/lab"
+                  onClick={() => setOpen(false)}
+                  className="block rounded-lg px-3 py-3 text-sm text-accent transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  Detection Lab
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/#modules"
