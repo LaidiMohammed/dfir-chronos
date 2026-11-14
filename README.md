@@ -1,4 +1,4 @@
-# DFIR Timeline Lab
+# DFIR Chronos
 
 Interactive, methodology-first **Digital Forensics & Incident Response** lab — Module 1:
 **Timeline Reconstruction via Artifact Correlation** (Windows host forensics:

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { CodeXml, Menu, X } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 
-const GITHUB_REPO = "https://github.com/LaidiMohammed/dfir-timeline-lab";
+const GITHUB_REPO = "https://github.com/LaidiMohammed/dfir-chronos";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
