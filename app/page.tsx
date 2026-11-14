@@ -1,103 +1,129 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { modules } from "@/lib/data/modules";
+import { Container } from "@/components/layout/Container";
+import { ModuleIcon } from "@/components/modules/ModuleIcon";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div>
+      {/* Hero */}
+      <section className="border-b border-border">
+        <Container className="py-20 md:py-28">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
+            Digital Forensics · Incident Response
+          </p>
+          <h1 className="mt-6 text-6xl font-semibold leading-[0.95] tracking-tight text-foreground sm:text-7xl md:text-8xl">
+            DFIR<span className="text-accent">_</span>Lab
+          </h1>
+          <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-fg">
+            Four forensic investigation labs, from collection to report.
+          </p>
+          <div className="mt-10">
+            <Link
+              href="/modules/timeline"
+              className="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3.5 text-base font-semibold text-background transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Explore the modules
+              <ArrowRight aria-hidden="true" className="h-5 w-5" />
+            </Link>
+          </div>
+        </Container>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Modules grid */}
+      <section id="modules" aria-labelledby="modules-heading">
+        <Container className="py-16 md:py-24">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
+                Curriculum
+              </p>
+              <h2
+                id="modules-heading"
+                className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
+              >
+                Modules
+              </h2>
+            </div>
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-fg">
+              {String(modules.length).padStart(2, "0")} / 04 available
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {modules.map((module) => (
+              <Card
+                key={module.slug}
+                className="flex flex-col transition-shadow hover:ring-2 hover:ring-accent/40"
+              >
+                <CardHeader>
+                  <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-lg border border-accent/30 bg-accent-muted">
+                    <ModuleIcon
+                      icon={module.icon}
+                      className="h-6 w-6 text-accent"
+                    />
+                  </div>
+                  <CardTitle className="text-xl font-semibold leading-snug tracking-tight">
+                    {module.title}
+                  </CardTitle>
+                  <CardDescription className="font-mono text-xs uppercase tracking-[0.2em] text-muted-fg">
+                    {module.subtitle}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-1 flex-col">
+                  <p className="text-[0.95rem] leading-7 text-muted-fg">
+                    {module.description}
+                  </p>
+                  <Link
+                    href={`/modules/${module.slug}`}
+                    className="mt-6 inline-flex w-fit items-center gap-2 font-mono text-sm text-accent transition-colors hover:text-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                  >
+                    Read module
+                    <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* About */}
+      <section
+        id="about"
+        aria-labelledby="about-heading"
+        className="border-t border-border"
+      >
+        <Container className="py-16 md:py-24">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
+            About
+          </p>
+          <h2
+            id="about-heading"
+            className="mt-2 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            Forensics as discipline, not guesswork
+          </h2>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-fg">
+            DFIR Lab is an interactive portfolio of end-to-end digital forensics
+            investigation labs: each module walks through collection, analysis and
+            conclusions with real tooling, real artifacts and a defensible
+            methodology — the same standard expected in an incident report or an
+            expert witness statement.
+          </p>
+          <p className="mt-6 font-mono text-xs uppercase tracking-[0.25em] text-muted-fg">
+            Next.js · TypeScript · Tailwind CSS
+          </p>
+        </Container>
+      </section>
     </div>
   );
 }
