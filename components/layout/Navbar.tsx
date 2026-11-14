@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { CodeXml, Menu, X } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 
@@ -19,8 +20,17 @@ export function Navbar() {
         >
           <Link
             href="/"
-            className="font-mono text-lg font-semibold tracking-tight text-accent transition-colors hover:text-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+            aria-label="DFIR Lab — home"
+            className="flex items-center gap-2.5 font-mono text-lg font-semibold tracking-tight text-accent transition-colors hover:text-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
           >
+            <Image
+              src="/dfir-lab-logo.svg"
+              alt=""
+              width={28}
+              height={28}
+              priority
+              className="h-7 w-7"
+            />
             DFIR.LAB
           </Link>
 
